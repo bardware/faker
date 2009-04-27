@@ -115,13 +115,13 @@
 	</cffunction>
 	
 	<cffunction name="numerify" return="String">
-		<cfargument name="format" type="string" default="???? ??? ???" />
+		<cfargument name="format" type="string" default="######## ###### ######" />
 		
 		<cfset var sReturn = arguments.format />
 		
 		<cfloop from="1" to="#len(arguments.format)#" index="i">
 			<cfset nRandom = randRange(0,9) />
-			<cfset sReturn = reReplace(sReturn, '\?', nRandom) />
+			<cfset sReturn = reReplace(sReturn, '\##', nRandom) />
 		</cfloop>
 		
 		<cfreturn sReturn />
