@@ -69,6 +69,7 @@
 		<li><a href="?method=getQuery">getQuery</a></li>
 		<li><a href="?method=numerify">numerify</a></li>
 		<li><a href="?method=letterify">letterify</a></li>
+		<li><a href="?method=bothify">bothify</a></li>
 	</ul>
 	
 	</cfoutput>
@@ -113,6 +114,10 @@
 		
 		<cfcase value="letterify">
 			<cfset result = oFaker.letterify() />
+		</cfcase>
+		
+		<cfcase value="bothify">
+			<cfset result = oFaker.bothify() />
 		</cfcase>
 		
 		<cfdefaultcase>

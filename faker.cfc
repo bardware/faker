@@ -142,6 +142,15 @@
 		
 	</cffunction>
 	
+	<cffunction name="bothify" return="String">
+		<cfargument name="format" type="string" default="##?##?##" />
+		
+		<cfset var sReturn = letterify(numerify(arguments.format)) />
+		
+		<cfreturn sReturn />
+		
+	</cffunction>
+	
 	<cffunction name="getState" return="String">
 		<cfargument name="locale" type="string" default="AU" />
 		
