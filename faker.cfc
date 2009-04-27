@@ -89,7 +89,56 @@
 		<cfreturn aReturn />
 		
 	</cffunction>
-
+	
+	<cffunction name="getCityPrefix" return="String">
+		
+		<cfset var sReturn = '' />
+		
+		<cfset sReturn = this.aCitiesPrefix[randRange(1,ArrayLen(this.aCitiesPrefix))] />
+		
+		<cfreturn sReturn />
+	
+	</cffunction>
+	
+	<cffunction name="getCitySuffix" return="String">
+		
+		<cfset var sReturn = '' />
+		
+		<cfset sReturn = this.aCitiesSuffix[randRange(1,ArrayLen(this.aCitiesSuffix))] />
+		
+		<cfreturn sReturn />
+	
+	</cffunction>
+	
+	<cffunction name="getCity" return="String">
+		
+		<cfset var sReturn = '' />
+		<cfset var nIndex= randRange(1, 6) />
+		
+		<cfswitch expression="#nIndex#">
+			
+			<cfcase value="2">
+				<cfset sReturn = getCityPrefix() & ' ' & getFirstname() & getCitySuffix() />
+			</cfcase>
+			
+			<cfcase value="3">
+				<cfset sReturn = getCityPrefix() & ' ' & getFirstname() />
+			</cfcase>
+			
+			<cfcase value="4">
+				<cfset sReturn = getFirstname() & getCitySuffix() />
+			</cfcase>
+			
+			<cfdefaultcase>
+				<cfset sReturn = getSurname() & getCitySuffix() />
+			</cfdefaultcase>
+			
+		</cfswitch>
+		
+		<cfreturn sReturn />
+	
+	</cffunction>
+	
 	<cffunction name="getQuery" return="Query">
 		<cfargument name="multiple" type="numeric" default="2" />
 		<cfargument name="lColumns" type="string" default="firstname,surname" />

@@ -65,6 +65,9 @@
 		<li><a href="?method=getFirstnames">getFirstnames</a></li>
 		<li><a href="?method=getSurname">getSurname</a></li>
 		<li><a href="?method=getSurnames">getSurnames</a></li>
+		<li><a href="?method=getCityPrefix">getCityPrefix</a></li>
+		<li><a href="?method=getCitySuffix">getCitySuffix</a></li>
+		<li><a href="?method=getCity">getCity</a></li>
 		<li><a href="?method=getState">getState</a></li>
 		<li><a href="?method=getStateAbbr">getStateAbbr</a></li>
 		<li><a href="?method=getQuery">getQuery</a></li>
@@ -99,6 +102,18 @@
 		
 		<cfcase value="getSurnames">
 			<cfset result = oFaker.getSurnames(100) />
+		</cfcase>
+		
+		<cfcase value="getCityPrefix">
+			<cfset result = oFaker.getCityPrefix() />
+		</cfcase>
+		
+		<cfcase value="getCitySuffix">
+			<cfset result = oFaker.getCitySuffix() />
+		</cfcase>
+		
+		<cfcase value="getCity">
+			<cfset result = oFaker.getCity() />
 		</cfcase>
 		
 		<cfcase value="getState">
