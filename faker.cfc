@@ -90,6 +90,37 @@
 		
 	</cffunction>
 	
+	<cffunction name="getStreetSuffix" return="String">
+		
+		<cfset var sReturn = '' />
+		
+		<cfset sReturn = this.aStreetSuffix[randRange(1,ArrayLen(this.aStreetSuffix))] />
+		
+		<cfreturn sReturn />
+	
+	</cffunction>
+	
+	<cffunction name="getStreetName" return="String">
+		
+		<cfset var sReturn = '' />
+		<cfset var nIndex= randRange(1, 2) />
+		
+		<cfswitch expression="#nIndex#">
+			
+			<cfcase value="2">
+				<cfset sReturn = getFirstname() & ' ' & getStreetSuffix() />
+			</cfcase>
+			
+			<cfdefaultcase>
+				<cfset sReturn = getSurname() & ' ' & getStreetSuffix() />
+			</cfdefaultcase>
+			
+		</cfswitch>
+		
+		<cfreturn sReturn />
+	
+	</cffunction>
+	
 	<cffunction name="getCityPrefix" return="String">
 		
 		<cfset var sReturn = '' />
@@ -113,7 +144,7 @@
 	<cffunction name="getCity" return="String">
 		
 		<cfset var sReturn = '' />
-		<cfset var nIndex= randRange(1, 6) />
+		<cfset var nIndex= randRange(1, 4) />
 		
 		<cfswitch expression="#nIndex#">
 			

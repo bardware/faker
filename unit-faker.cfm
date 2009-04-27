@@ -58,6 +58,7 @@
 	<p>faker is a data generator for ColdFusion (taking insipration from ruby faker).</p>
 	<p>This is unit tester for faker.</p>
 	
+	<h2>Primary Methods</h2>
 	<ul>
 		<li><a href="?method=getName">getName</a></li>
 		<li><a href="?method=getNames">getNames</a></li>
@@ -65,8 +66,7 @@
 		<li><a href="?method=getFirstnames">getFirstnames</a></li>
 		<li><a href="?method=getSurname">getSurname</a></li>
 		<li><a href="?method=getSurnames">getSurnames</a></li>
-		<li><a href="?method=getCityPrefix">getCityPrefix</a></li>
-		<li><a href="?method=getCitySuffix">getCitySuffix</a></li>
+		<li><a href="?method=getStreetName">getStreetName</a></li>
 		<li><a href="?method=getCity">getCity</a></li>
 		<li><a href="?method=getState">getState</a></li>
 		<li><a href="?method=getStateAbbr">getStateAbbr</a></li>
@@ -74,6 +74,12 @@
 		<li><a href="?method=numerify">numerify</a></li>
 		<li><a href="?method=letterify">letterify</a></li>
 		<li><a href="?method=bothify">bothify</a></li>
+	</ul>
+	
+	<h2>Helper Methods</h2>
+	<ul><li><a href="?method=getStreetSuffix">getStreetSuffix</a></li>
+		<li><a href="?method=getCityPrefix">getCityPrefix</a></li>
+		<li><a href="?method=getCitySuffix">getCitySuffix</a></li>
 	</ul>
 	
 	</cfoutput>
@@ -102,6 +108,14 @@
 		
 		<cfcase value="getSurnames">
 			<cfset result = oFaker.getSurnames(100) />
+		</cfcase>
+		
+		<cfcase value="getStreetSuffix">
+			<cfset result = oFaker.getStreetSuffix() />
+		</cfcase>
+		
+		<cfcase value="getStreetName">
+			<cfset result = oFaker.getStreetName() />
 		</cfcase>
 		
 		<cfcase value="getCityPrefix">
@@ -149,7 +163,7 @@
 	<cfif bShowResult>
 		
 		<cfoutput>
-			<h2>#url.method# was executed</h2>
+			<h3>#url.method# was executed</h3>
 			<p>Result:</p>
 		</cfoutput>
 		
