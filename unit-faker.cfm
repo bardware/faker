@@ -66,6 +66,7 @@
 		<li><a href="?method=getSurname">getSurname</a></li>
 		<li><a href="?method=getSurnames">getSurnames</a></li>
 		<li><a href="?method=getState">getState</a></li>
+		<li><a href="?method=getStateAbbr">getStateAbbr</a></li>
 		<li><a href="?method=getQuery">getQuery</a></li>
 		<li><a href="?method=numerify">numerify</a></li>
 		<li><a href="?method=letterify">letterify</a></li>
@@ -102,6 +103,10 @@
 		
 		<cfcase value="getState">
 			<cfset result = oFaker.getState() />
+		</cfcase>
+		
+		<cfcase value="getStateAbbr">
+			<cfset result = oFaker.getStateAbbr() />
 		</cfcase>
 		
 		<cfcase value="getQuery">

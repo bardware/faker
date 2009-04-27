@@ -166,6 +166,21 @@
 		
 	</cffunction>
 	
+	<cffunction name="getStateAbbr" return="String">
+		<cfargument name="locale" type="string" default="AU" />
+		
+		<cfset var sReturn = '' />
+		
+		<cfif NOT ListContains('AU,US', arguments.locale)>
+			<cfthrow detail="Invalid locale found. You can only use AU, US." errorCode="invalidLocale" type="faker" />
+		</cfif>
+		
+		<cfset sReturn = this['aStatesAbbr_' & arguments.locale][randRange(1, ArrayLen(this['aStatesAbbr_' & arguments.locale]))] />
+		
+		<cfreturn sReturn />
+		
+	</cffunction>
+	
 	<cfinclude template="faker/fakerlib.cfm" />
 
 </cfcomponent>
