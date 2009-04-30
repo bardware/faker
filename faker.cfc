@@ -121,6 +121,17 @@
 	
 	</cffunction>
 	
+	<cffunction name="getStreetAddress" return="String">
+		
+		<cfset var sReturn = '' />
+		<cfset var nIndex= randRange(1, 4) />
+		
+		<cfset sReturn = numerify(repeatString('##', nIndex)) & ' ' & getStreetName() />
+		
+		<cfreturn sReturn />
+	
+	</cffunction>
+	
 	<cffunction name="getCityPrefix" return="String">
 		
 		<cfset var sReturn = '' />

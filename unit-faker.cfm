@@ -45,6 +45,15 @@
 
 		}
 
+		div.result {
+		
+			position: absolute;
+			top: 100px;
+			right: 0px;
+			width: 300px;
+		
+		}
+
 	</style>
 	
 </head>
@@ -58,7 +67,7 @@
 	<p>faker is a data generator for ColdFusion (taking insipration from ruby faker).</p>
 	<p>This is unit tester for faker.</p>
 	
-	<h2>Primary Methods</h2>
+	<h2>Names</h2>
 	<ul>
 		<li><a href="?method=getName">getName</a></li>
 		<li><a href="?method=getNames">getNames</a></li>
@@ -66,10 +75,19 @@
 		<li><a href="?method=getFirstnames">getFirstnames</a></li>
 		<li><a href="?method=getSurname">getSurname</a></li>
 		<li><a href="?method=getSurnames">getSurnames</a></li>
+	</ul>
+	
+	<h2>Address</h2>
+	<ul>
 		<li><a href="?method=getStreetName">getStreetName</a></li>
+		<li><a href="?method=getStreetAddress">getStreetAddress</a></li>
 		<li><a href="?method=getCity">getCity</a></li>
 		<li><a href="?method=getState">getState</a></li>
 		<li><a href="?method=getStateAbbr">getStateAbbr</a></li>
+	</ul>
+	
+	<h2>General</h2>
+	<ul>
 		<li><a href="?method=getQuery">getQuery</a></li>
 		<li><a href="?method=numerify">numerify</a></li>
 		<li><a href="?method=letterify">letterify</a></li>
@@ -118,6 +136,10 @@
 			<cfset result = oFaker.getStreetName() />
 		</cfcase>
 		
+		<cfcase value="getStreetAddress">
+			<cfset result = oFaker.getStreetAddress() />
+		</cfcase>
+		
 		<cfcase value="getCityPrefix">
 			<cfset result = oFaker.getCityPrefix() />
 		</cfcase>
@@ -163,11 +185,17 @@
 	<cfif bShowResult>
 		
 		<cfoutput>
+		<div class="result">
+			
 			<h3>#url.method# was executed</h3>
 			<p>Result:</p>
 		</cfoutput>
 		
 		<cfdump var="#result#" />
+		
+		<cfoutput>
+		</div>
+		</cfoutput>
 		
 	</cfif>
 	
