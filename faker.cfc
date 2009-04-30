@@ -59,12 +59,18 @@
 	</cffunction>
 
 	<cffunction name="getName" return="String">
+		<cfargument name="bPrefix" type="boolean" default="false" />
+		<cfargument name="bSuffix" type="boolean" default="false" />
 		
 		<cfset var sReturn = '' />
 		
 		<!--- get the firstname, then the surname --->
 		<cfset sReturn = this.aFirstnames[randRange(1, ArrayLen(this.aFirstnames))] />
 		<cfset sReturn &= ' ' & this.aSurnames[randRange(1, ArrayLen(this.aSurnames))] />
+		
+		<!--- do we need the suffix? --->
+		<cfif arguments.bPrefix><cfset sReturn = getNamePrefix() & ' ' & sReturn /></cfif>
+		<cfif arguments.bSuffix><cfset sReturn = sReturn & ' ' & getNameSuffix() /></cfif>
 		
 		<cfreturn sReturn />
 		
@@ -88,6 +94,26 @@
 		
 		<cfreturn aReturn />
 		
+	</cffunction>
+	
+	<cffunction name="getNamePrefix" return="String">
+		
+		<cfset var sReturn = '' />
+		
+		<cfset sReturn = this.aNamesPrefix[randRange(1,ArrayLen(this.aNamesPrefix))] />
+		
+		<cfreturn sReturn />
+	
+	</cffunction>
+	
+	<cffunction name="getNameSuffix" return="String">
+		
+		<cfset var sReturn = '' />
+		
+		<cfset sReturn = this.aNamesSuffix[randRange(1,ArrayLen(this.aNamesSuffix))] />
+		
+		<cfreturn sReturn />
+	
 	</cffunction>
 	
 	<cffunction name="getStreetSuffix" return="String">

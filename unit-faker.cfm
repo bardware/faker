@@ -98,6 +98,8 @@
 	<ul><li><a href="?method=getStreetSuffix">getStreetSuffix</a></li>
 		<li><a href="?method=getCityPrefix">getCityPrefix</a></li>
 		<li><a href="?method=getCitySuffix">getCitySuffix</a></li>
+		<li><a href="?method=getNamePrefix">getNamePrefix</a></li>
+		<li><a href="?method=getNameSuffix">getNameSuffix</a></li>
 	</ul>
 	
 	</cfoutput>
@@ -106,6 +108,14 @@
 	
 		<cfcase value="getName">			
 			<cfset result = oFaker.getName() />				
+		</cfcase>
+		
+		<cfcase value="getNamePrefix">			
+			<cfset result = oFaker.getNamePrefix() />				
+		</cfcase>
+		
+		<cfcase value="getNameSuffix">			
+			<cfset result = oFaker.getNameSuffix() />				
 		</cfcase>
 		
 		<cfcase value="getNames">			
