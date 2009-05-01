@@ -207,24 +207,38 @@
 	
 	</cffunction>
 	
-	<cffunction name="getQuery" return="Query">
+	<cffunction name="getQuery" return="Query" output="true">
 		<cfargument name="multiple" type="numeric" default="2" />
-		<cfargument name="lColumns" type="string" default="firstname,surname" />
+		<cfargument name="columns" type="Array" default="[{function = 'getFirstname', column = 'firstname'},{function = 'getSurname', column = 'surname'}]" />
 		
-		<cfset var qReturn = QueryNew(#arguments.lColumns#) />
-		<cfset var sFirstname = '' />
-		<cfset var sSurname = '' />
+		<cfset var qReturn = QueryNew('') />
+		<cfset var lColumns = '' />
+		<cfset var faker = CreateObject('component', 'faker') />
+		<cfset var sResult = '' />
+		<cfset var stArgs = {} />
 		
-		<cfloop from="1" to="#arguments.multiple#" index="i">
+		<!--- create a new query with the required columns --->
+		<cfloop array="#arguments.columns#" index="i">
+			<cfset lColumns = ListAppend(lColumns, i.column) />
+		</cfloop>
+		<cfset qReturn = QueryNew(lColumns) />
 		
-			<!--- get the firstname --->
-			<cfset sFirstname = getFirstname() />
-			<cfset sSurname = getSurname() />
-			
+		<!--- let's create the rows in the queries --->
+		<cfloop from="1" to="#arguments.multiple#" index="count">
+		
 			<cfset QueryAddRow(qReturn) />
-			<cfset QuerySetCell(qReturn, 'firstname', sFirstname) />
-			<cfset QuerySetCell(qReturn, 'surname', sSurname) />
-				
+		
+			<!--- let's set cell for the row on each column, dynamically evaluating the methods to call --->
+			<cfloop array="#arguments.columns#" index="i">
+				<cfif NOT ListContains('getFirstname,getSurname,getState', i.function)>
+					<cfthrow detail="Invalid method. You can only use getFirstname, getSurname." errorCode="invalidMethod" type="faker" />
+				</cfif>
+				<cfset stArgs = {} />
+				<cfif isDefined('i.args')><cfset stArgs = i.args /></cfif>
+				<cfset sResult = evaluate('faker.#i.function#(argumentCollection=stArgs)') />
+				<cfset QuerySetCell(qReturn, i.column, sResult) />
+			</cfloop>
+		
 		</cfloop>
 		
 		<cfreturn qReturn />
@@ -273,11 +287,11 @@
 		
 		<cfset var sReturn = '' />
 		
-		<cfif NOT ListContains('AU,US,UK', arguments.locale)>
+		<cfif NOT ListContains('AU,US,UK', locale)>
 			<cfthrow detail="Invalid locale found. You can only use AU, US or UK." errorCode="invalidLocale" type="faker" />
 		</cfif>
 		
-		<cfset sReturn = this['aStates_' & arguments.locale][randRange(1, ArrayLen(this['aStates_' & arguments.locale]))] />
+		<cfset sReturn = this['aStates_' & locale][randRange(1, ArrayLen(this['aStates_' & locale]))] />
 		
 		<cfreturn sReturn />
 		
