@@ -171,7 +171,13 @@
 		</cfcase>
 		
 		<cfcase value="getQuery">
-			<cfset aColumns = [{function = 'getFirstname', column = 'firstname'},{function = 'getSurname', column = 'surname'},{function = 'getState', column = 'state', args = {locale = 'UK'}}] />
+			<cfset aColumns = [
+					{function = 'getFirstname', column = 'firstname'},
+					{function = 'getSurname', column = 'surname'},
+					{function = 'getStreetAddress', column = 'streetaddress'},
+					{function = 'getCity', column = 'city', args = {locale = 'UK'}},
+					{function = 'getState', column = 'state', args = {locale = 'UK'}}
+					] />
 			<cfset result = oFaker.getQuery(multiple = 100, columns = aColumns) />
 		</cfcase>
 		

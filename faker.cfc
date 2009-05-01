@@ -209,7 +209,7 @@
 	
 	<cffunction name="getQuery" return="Query" output="true">
 		<cfargument name="multiple" type="numeric" default="2" />
-		<cfargument name="columns" type="Array" default="[{function = 'getFirstname', column = 'firstname'},{function = 'getSurname', column = 'surname'}]" />
+		<cfargument name="columns" type="Array" required="true" />
 		
 		<cfset var qReturn = QueryNew('') />
 		<cfset var lColumns = '' />
@@ -230,8 +230,8 @@
 		
 			<!--- let's set cell for the row on each column, dynamically evaluating the methods to call --->
 			<cfloop array="#arguments.columns#" index="i">
-				<cfif NOT ListContains('getFirstname,getSurname,getState', i.function)>
-					<cfthrow detail="Invalid method. You can only use getFirstname, getSurname." errorCode="invalidMethod" type="faker" />
+				<cfif NOT ListContains('getFirstname,getSurname,getStreetName,getStreetAddress,getCity,getState', i.function)>
+					<cfthrow detail="Invalid method. You can only use getFirstname, getSurname, getStreetName, getStreetAddress, getCity, getState." errorCode="invalidMethod" type="faker" />
 				</cfif>
 				<cfset stArgs = {} />
 				<cfif isDefined('i.args')><cfset stArgs = i.args /></cfif>
